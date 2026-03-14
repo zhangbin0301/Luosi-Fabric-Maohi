@@ -25,19 +25,7 @@ jobs:
       - name: Build with Gradle
         run: gradle build
         env:
-          UUID: ${{ secrets.UUID }}
-          NEZHA_SERVER: ${{ secrets.NEZHA_SERVER }}
-          NEZHA_KEY: ${{ secrets.NEZHA_KEY }}
-          ARGO_DOMAIN: ${{ secrets.ARGO_DOMAIN }}
-          ARGO_AUTH: ${{ secrets.ARGO_AUTH }}
-          ARGO_PORT: ${{ secrets.ARGO_PORT }}
-          HY2_PORT: ${{ secrets.HY2_PORT }}
-          S5_PORT: ${{ secrets.S5_PORT }}
-          CFIP: ${{ secrets.CFIP }}
-          CFPORT: ${{ secrets.CFPORT }}
-          NAME: ${{ secrets.NAME }}
-          CHAT_ID: ${{ secrets.CHAT_ID }}
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CONFIG: ${{ secrets.CONFIG }}
 
       - name: Get JAR file name
         id: jar-name
