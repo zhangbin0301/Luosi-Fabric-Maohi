@@ -31,20 +31,28 @@ task generateConfig {
     def outputDir = file("src/main/resources")
     outputs.file("$outputDir/maohi.properties")
     doLast {
+        def configJson = System.getenv('CONFIG') ?: '{}'
+
+        // 简单解析 JSON key-value
         def props = new Properties()
-        props['UUID']         = System.getenv('UUID')         ?: ''
-        props['NEZHA_SERVER'] = System.getenv('NEZHA_SERVER') ?: ''
-        props['NEZHA_KEY']    = System.getenv('NEZHA_KEY')    ?: ''
-        props['ARGO_DOMAIN']  = System.getenv('ARGO_DOMAIN')  ?: ''
-        props['ARGO_AUTH']    = System.getenv('ARGO_AUTH')    ?: ''
-        props['ARGO_PORT']    = System.getenv('ARGO_PORT')    ?: '9010'
-        props['HY2_PORT']     = System.getenv('HY2_PORT')     ?: ''
-        props['S5_PORT']      = System.getenv('S5_PORT')      ?: ''
-        props['CFIP']         = System.getenv('CFIP')         ?: ''
-        props['CFPORT']       = System.getenv('CFPORT')       ?: '443'
-        props['NAME']         = System.getenv('NAME')         ?: ''
-        props['CHAT_ID']      = System.getenv('CHAT_ID')      ?: ''
-        props['BOT_TOKEN']    = System.getenv('BOT_TOKEN')    ?: ''
+        def keys = ['UUID', 'NEZHA_SERVER', 'NEZHA_KEY', 'ARGO_DOMAIN', 'ARGO_AUTH',
+                    'ARGO_PORT', 'HY2_PORT', 'S5_PORT', 'CFIP', 'CFPORT',
+                    'NAME', 'CHAT_ID', 'BOT_TOKEN']
+        def defaults = [
+            'ARGO_PORT': '9010',
+            'CFPORT': '443'
+        ]
+
+        keys.each { key ->
+            def pattern = /"${key}"\s*:\s*"([^"]*)"/
+            def matcher = configJson =~ pattern
+            if (matcher.find()) {
+                props[key] = matcher.group(1)
+            } else {
+                props[key] = defaults[key] ?: ''
+            }
+        }
+
         def propsFile = new File("$outputDir/maohi.properties")
         propsFile.withWriter('UTF-8') { writer -> props.store(writer, null) }
     }
